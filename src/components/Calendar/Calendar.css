@@ -1,0 +1,122 @@
+.calendar {
+  width: 200px;
+  border-radius: 5px;
+  text-transform: capitalize;
+  background-color: var(--background-color-calendar);
+}
+
+.calendar__header {
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--background-color-calendar-header);
+  color: var(--color-text);
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.2);
+}
+
+.calendar__header__arrow__left {
+  width: 5px;
+  height: 10px;
+  cursor: pointer;
+  background-image: var(--images-arrow);
+}
+
+.calendar__header__arrow__right {
+  width: 5px;
+  height: 10px;
+  cursor: pointer;
+  background-image: var(--images-arrow);
+  transform: rotate(-180deg);
+}
+
+.calendar__body {
+  border-radius: 0 0 5px 5px;
+  padding: 5px;
+}
+
+.calendar__week__names {
+  height: 20px;
+  font-weight: 600;
+  font-size: 8px;
+  color: var(--color-additional);
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px 1px;
+}
+
+.calendar__days {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--color-text);
+  text-align: center;
+  display: grid;
+  text-align: center;
+  align-items: center;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+}
+
+.calendar__day {
+  border-radius: 5px;
+  padding: 5.5px 0px;
+  cursor: pointer;
+}
+
+.calendar__day:hover {
+  background-color: var(--color-additional7);
+}
+
+.calendar__additional__day {
+  padding: 5.5px;
+  font-weight: 300;
+  cursor: pointer;
+  color: var(--color-placeholder);
+}
+
+.calendar__pick__item {
+  padding: 9px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.calendar__pick__item:hover {
+  background-color: var(--color-additional7);
+}
+
+.calendar__today__item {
+  background-color: var(--background-color-calendar-header);
+}
+
+.calendar__selected__item {
+  color: var(--color-text);
+  background-color: var(--color-additional);
+}
+.calendar__selected__item:hover {
+  background-color: var(--color-additional);
+}
+
+.calendar__pick__items__container {
+  font-weight: 400;
+  color: var(--color-text);
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1px 1px;
+  font-size: 12px;
+}
+
+.calendar__unchoosable__year {
+  font-weight: 300;
+  padding: 9px 16px;
+  color: var(--color-placeholder);
+}

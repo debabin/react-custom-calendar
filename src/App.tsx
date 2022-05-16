@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { Calendar } from './components';
+import { formatDate } from './utils/helpers/date';
+
+import './static/css/global.css';
+
+export const App: React.FC = () => {
+  const [selectedDate, setSelectedDay] = React.useState(new Date());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app__container'>
+      <div className='date__container'>{formatDate(selectedDate, 'DDD DD MMM YYYY')}</div>
+
+      <Calendar selectedDate={selectedDate} selectDate={(date) => setSelectedDay(date)} />
     </div>
   );
-}
+};
 
 export default App;

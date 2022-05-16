@@ -1,0 +1,48 @@
+.app__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #72757a;
+  height: 100vh;
+  margin-inline: auto;
+}
+
+.date__container {
+  background-color: var(--background-color-calendar);
+  font-size: 15px;
+  color: var(--color-text);
+  border-radius: 15px;
+  padding: 5px 25px;
+  margin-bottom: 15px;
+}
+
+:root {
+  /* colors */
+  --color-text: #434141;
+  --color-placeholder: rgba(0, 0, 0, 0.5);
+  --color-additional: #93b1ff;
+  --color-additional7: rgba(147, 177, 255, 0.7);
+  --background-color-calendar: #ededed;
+  --background-color-calendar-header: #ffffff;
+
+  /* images */
+  --images-arrow: url('../images/arrow.svg');
+  /* spacing */
+  /* text */
+}
+
+:root {
+  /* colors */
+  --color-text: #ffffff;
+  --color-placeholder: rgba(255, 255, 255, 0.5);
+  --color-additional: #93b1ff;
+  --color-additional7: rgba(147, 177, 255, 0.7);
+  --background-color-calendar: #3a3e42;
+  --background-color-calendar-header: #575c63;
+
+  /* images */
+  --images-arrow: url('../images/arrow.svg');
+  /* spacing */
+  /* text */
+}
