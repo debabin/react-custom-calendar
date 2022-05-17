@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { checkDateIsEqual, checkIsToday } from '../../utils/helpers/date';
-import { useCalendar } from './hooks/useCalendart';
+import { useCalendar } from './hooks/useCalendar';
 
 import './Calendar.css';
 
@@ -124,8 +124,8 @@ export const Calendar: React.FC<CalendarProps> = ({
           <div className='calendar__pick__items__container'>
             <div className='calendar__unchoosable__year'>{state.selectedYearsInterval[0] - 1}</div>
             {state.selectedYearsInterval.map((year) => {
-              const isCurrentYear = year === state.selectedYear;
-              const isSelectedYear = new Date().getFullYear() === year;
+              const isCurrentYear = new Date().getFullYear() === year;
+              const isSelectedYear = year === state.selectedYear;
 
               return (
                 <div
@@ -137,8 +137,8 @@ export const Calendar: React.FC<CalendarProps> = ({
                   }}
                   className={[
                     'calendar__pick__item',
-                    isCurrentYear ? 'calendar_selected_item_container' : '',
-                    isSelectedYear ? 'calendar_today_item_container' : ''
+                    isCurrentYear ? 'calendar__today__item' : '',
+                    isSelectedYear ? 'calendar__selected__item' : ''
                   ].join(' ')}
                 >
                   {year}

@@ -42,7 +42,7 @@ export const useCalendar = ({
   const days = React.useMemo(() => selectedMonth.createMonthDays(), [selectedMonth, selectedYear]);
 
   const calendarDays = React.useMemo(() => {
-    const monthNumberOfDays = getMonthNumberOfDays(selectedMonth.monthNumber, selectedYear);
+    const monthNumberOfDays = getMonthNumberOfDays(selectedMonth.monthIndex, selectedYear);
 
     const prevMonthDays = createMonth({
       date: new Date(selectedYear, selectedMonth.monthIndex - 1),

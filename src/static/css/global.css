@@ -46,3 +46,18 @@
   /* spacing */
   /* text */
 }
+
+:root {
+  /* colors */
+  --color-text: #434141;
+  --color-placeholder: rgba(0, 0, 0, 0.5);
+  --color-additional: rgb(100, 188, 255);
+  --color-additional7: rgba(100, 188, 255, 0.7);
+  --background-color-calendar: #ededed;
+  --background-color-calendar-header: rgb(136, 202, 252);
+
+  /* images */
+  --images-arrow: url('../images/arrow_white.svg');
+  /* spacing */
+  /* text */
+}
