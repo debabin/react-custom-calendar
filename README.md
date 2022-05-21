@@ -1,4 +1,6 @@
-# 🗓️ Кастомный календарь на React + Typescript С НУЛЯ
+# 🗓️ Кастомный календарь на React + Typescript С НУЛЯ за 1 ЧАС, не используем moment.js
+
+Полностью кастомный компонент календарь React 18 + Typescript без библиотек по типу moment.js, dayjs. В данном видео можно найти много функций, который работаю с new Date. Если есть идеи, что я еще могу разобрать в режиме лайв кодинга, пишите в комментарии.
 
 ## Видео
 
@@ -9,5 +11,5 @@
 - :popcorn: &nbsp;**[Youtube](https://www.youtube.com/channel/UCYimO7BCUwdGiaCXlwG-rLw)**
 - :popcorn: &nbsp;**[Rutube](https://rutube.ru/channel/24693196/)**
 - :bird: &nbsp;**[Twitter](https://twitter.com/db_dzo)**
-- :camera: &nbsp;**[Instagram](https://www.instagram.com/db_dzo/)**
+- :camera: &nbsp;**[Instagram](https://www.instagram.com/db_babin/)**
 - :robot: &nbsp;**[Discord](https://discordapp.com/users/181376683046076416/)**
