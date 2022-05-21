@@ -4,6 +4,8 @@
 
 ## Видео
 
+[![watch the video](https://img.youtube.com/vi/B8F9_IVgipw/maxresdefault.jpg)](https://youtu.be/B8F9_IVgipw)
+
 ## Социальные сети
 
 - :comet: &nbsp;**[Github](https://github.com/debabin)**
