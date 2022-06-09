@@ -9,8 +9,10 @@ import {
 } from '../../../utils/helpers/date';
 
 interface UseCalendarParams {
+  type: 'date' | 'period';
   locale?: string;
   selectedDate: Date;
+  selectDate: (date: Date) => void;
   firstWeekDayNumber?: number;
 }
 
@@ -22,12 +24,18 @@ const getYearsInterval = (year: number) => {
 };
 
 export const useCalendar = ({
+  type = 'date',
   locale = 'default',
+  selectDate,
   selectedDate: date,
   firstWeekDayNumber = 2
 }: UseCalendarParams) => {
   const [mode, setMode] = React.useState<'days' | 'monthes' | 'years'>('days');
   const [selectedDay, setSelectedDay] = React.useState(createDate({ date }));
+  const [period, setPeriod] = React.useState<{
+    startDate: null | ReturnType<typeof createDate>;
+    endDate: null | ReturnType<typeof createDate>;
+  }>({ startDate: selectedDay, endDate: null });
   const [selectedMonth, setSelectedMonth] = React.useState(
     createMonth({ date: new Date(selectedDay.year, selectedDay.monthIndex), locale })
   );
@@ -130,12 +138,30 @@ export const useCalendar = ({
     }
   };
 
-  const setSelectedMonthByIndex = (monthIndex: number) => {
+  const selectedMonthByIndex = (monthIndex: number) => {
     setSelectedMonth(createMonth({ date: new Date(selectedYear, monthIndex), locale }));
   };
 
+  const selectDay = (day: ReturnType<typeof createDate>) => {
+    if (type === 'period') {
+      if (!period.startDate || !!period.endDate) {
+        setPeriod({ startDate: day, endDate: null });
+        return;
+      }
+
+      setPeriod({ ...period, endDate: day });
+      return;
+    }
+
+    if (type === 'date') {
+      setSelectedDay(day);
+      selectDate(day.date);
+    }
+  };
+  console.log('period', period);
   return {
     state: {
+      period,
       mode,
       calendarDays,
       weekDaysNames,
@@ -146,10 +172,11 @@ export const useCalendar = ({
       selectedYearsInterval
     },
     functions: {
+      selectDay,
       onClickArrow,
       setMode,
       setSelectedDay,
-      setSelectedMonthByIndex,
+      selectedMonthByIndex,
       setSelectedYear,
       setSelectedYearsInterval
     }

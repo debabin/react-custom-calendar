@@ -6,6 +6,7 @@ import { useCalendar } from './hooks/useCalendar';
 import './Calendar.css';
 
 interface CalendarProps {
+  type?: 'period' | 'date';
   locale?: string;
   selectedDate: Date;
   selectDate: (date: Date) => void;
@@ -13,13 +14,16 @@ interface CalendarProps {
 }
 
 export const Calendar: React.FC<CalendarProps> = ({
+  type = 'date',
   locale = 'default',
   selectedDate: date,
   selectDate,
   firstWeekDayNumber = 2
 }) => {
   const { functions, state } = useCalendar({
+    type,
     locale,
+    selectDate,
     selectedDate: date,
     firstWeekDayNumber
   });
@@ -65,22 +69,42 @@ export const Calendar: React.FC<CalendarProps> = ({
             <div className='calendar__days'>
               {state.calendarDays.map((day) => {
                 const isToday = checkIsToday(day.date);
-                const isSelectedDay = checkDateIsEqual(day.date, state.selectedDay.date);
+                const isSelectedDay =
+                  type === 'date' && checkDateIsEqual(day.date, state.selectedDay.date);
                 const isAdditionalDay = day.monthIndex !== state.selectedMonth.monthIndex;
+                const isEndPeriodDate =
+                  type === 'period' &&
+                  state.period.startDate &&
+                  checkDateIsEqual(day.date, state.period.startDate.date);
+                const isStartPeriodDate =
+                  type === 'period' &&
+                  state.period.endDate &&
+                  checkDateIsEqual(day.date, state.period.endDate.date);
+                const isDateBetweenPeriod =
+                  state.period.endDate &&
+                  state.period.endDate.date.getTime() > day.date.getTime() &&
+                  state.period.startDate &&
+                  state.period.startDate.date.getTime() < day.date.getTime();
+                const isNotSelectedDate =
+                  state.period.startDate &&
+                  state.period.startDate.date.getTime() > day.date.getTime();
 
                 return (
                   <div
                     key={`${day.dayNumber}-${day.monthIndex}`}
                     aria-hidden
                     onClick={() => {
-                      functions.setSelectedDay(day);
-                      selectDate(day.date);
+                      functions.selectDay(day);
                     }}
                     className={[
                       'calendar__day',
                       isToday ? 'calendar__today__item' : '',
+                      isDateBetweenPeriod ? 'calendar__today__item' : '',
                       isSelectedDay ? 'calendar__selected__item' : '',
-                      isAdditionalDay ? 'calendar__additional__day' : ''
+                      isEndPeriodDate ? 'calendar__selected__item' : '',
+                      isStartPeriodDate ? 'calendar__selected__item' : '',
+                      isAdditionalDay ? 'calendar__additional__day' : '',
+                      isNotSelectedDate ? 'calendar__additional__day' : ''
                     ].join(' ')}
                   >
                     {day.dayNumber}
@@ -104,7 +128,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                   key={monthesName.month}
                   aria-hidden
                   onClick={() => {
-                    functions.setSelectedMonthByIndex(monthesName.monthIndex);
+                    functions.selectedMonthByIndex(monthesName.monthIndex);
                     functions.setMode('days');
                   }}
                   className={[
